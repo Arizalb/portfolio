@@ -50,7 +50,7 @@ const Home = () => {
           </Text>
           <Text>
             <strong>GitHub :</strong>{" "}
-            <a href="https://github.com/rzlbaihaqi">sini cek juga</a>
+            <a href="https://github.com/Arizalb">sini cek juga</a>
           </Text>
         </Box>
 
