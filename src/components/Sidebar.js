@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink as RouterLink } from "react-router-dom";
 import {
   Box,
   Flex,
-  Heading,
   Link,
   VStack,
   IconButton,
@@ -12,15 +11,17 @@ import {
   Drawer,
   DrawerContent,
   DrawerOverlay,
+  useColorMode,
+  useColorModeValue,
+  Switch,
+  Collapse,
+  Heading,
 } from "@chakra-ui/react";
 import { FiHome, FiUser, FiBriefcase, FiMail, FiMusic } from "react-icons/fi";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import { HamburgerIcon, SunIcon, MoonIcon } from "@chakra-ui/icons";
 
-const SidebarContent = ({ onClose }) => (
+const SidebarContent = ({ onClose, isOpen }) => (
   <VStack spacing={4} align="start" w="full">
-    <Heading as="h1" size="lg" mb={4}>
-      RzlBaihqi
-    </Heading>
     {[
       { to: "/", label: "Home", icon: FiHome },
       { to: "/about", label: "About", icon: FiUser },
@@ -40,7 +41,9 @@ const SidebarContent = ({ onClose }) => (
       >
         <Flex align="center">
           <item.icon />
-          <Box ml={2}>{item.label}</Box>
+          <Collapse in={isOpen}>
+            <Box ml={2}>{item.label}</Box>
+          </Collapse>
         </Flex>
       </Link>
     ))}
@@ -48,45 +51,94 @@ const SidebarContent = ({ onClose }) => (
 );
 
 const Sidebar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isDrawerOpen,
+    onOpen: onDrawerOpen,
+    onClose: onDrawerClose,
+  } = useDisclosure();
+  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const { colorMode, toggleColorMode } = useColorMode();
+  const bg = useColorModeValue("primary.900", "gray.800");
+  const color = useColorModeValue("white", "gray.200");
+
+  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   return (
     <>
       <Box
+        display="flex"
+        pos="fixed"
+        w="full"
+        h="16"
+        bg={bg}
+        color={color}
+        alignItems="center"
+        justifyContent="space-between"
+        px={4}
+        zIndex="1001"
+      >
+        <IconButton
+          aria-label="Toggle sidebar"
+          icon={<HamburgerIcon />}
+          size="sm"
+          onClick={toggleSidebar}
+          display={{ base: "none", md: "inline-flex" }}
+        />
+        <IconButton
+          aria-label="Open menu"
+          icon={<HamburgerIcon />}
+          size="sm"
+          onClick={onDrawerOpen}
+          display={{ base: "inline-flex", md: "none" }}
+        />
+        <Heading as="h1" size="md" flex="1" textAlign="center">
+          RzlBaihqi
+        </Heading>
+        <Flex align="center">
+          <SunIcon />
+          <Switch
+            mx={2}
+            isChecked={colorMode === "dark"}
+            onChange={toggleColorMode}
+          />
+          <MoonIcon />
+        </Flex>
+      </Box>
+      <Box
         display={{ base: "none", md: "block" }}
         pos="fixed"
-        w={{ base: "full", md: 60 }}
+        left="0"
+        top="16"
+        w={isSidebarOpen ? 60 : 16}
         h="full"
-        bg="primary.900"
-        color="white"
+        bg={bg}
+        color={color}
         p={4}
+        transition="width 0.3s"
       >
-        <SidebarContent onClose={onClose} />
+        <SidebarContent onClose={() => {}} isOpen={isSidebarOpen} />
       </Box>
       <Drawer
-        isOpen={isOpen}
+        isOpen={isDrawerOpen}
         placement="left"
-        onClose={onClose}
+        onClose={onDrawerClose}
         display={{ base: "block", md: "none" }}
       >
         <DrawerOverlay>
-          <DrawerContent bg="primary.900" color="white" p={4}>
-            <CloseButton onClick={onClose} alignSelf="flex-end" />
-            <SidebarContent onClose={onClose} />
+          <DrawerContent bg={bg} color={color} p={4}>
+            <CloseButton onClick={onDrawerClose} alignSelf="flex-end" />
+            <SidebarContent onClose={onDrawerClose} isOpen />
           </DrawerContent>
         </DrawerOverlay>
       </Drawer>
-      <IconButton
-        aria-label="Open menu"
-        icon={<HamburgerIcon />}
-        size="lg"
-        onClick={onOpen}
-        display={{ base: "block", md: "none" }}
-        pos="fixed"
-        top="1rem"
-        left="1rem"
-        zIndex="1000"
-      />
+      <Box
+        ml={{ base: 0, md: isSidebarOpen ? 60 : 16 }}
+        mt="16"
+        p={4}
+        transition="margin-left 0.3s"
+      >
+        {/* Konten halaman Anda di sini */}
+      </Box>
     </>
   );
 };

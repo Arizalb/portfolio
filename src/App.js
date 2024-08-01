@@ -17,9 +17,9 @@ const App = () => {
       <Flex minH="100vh">
         <Sidebar />
         <Box
-          ml={{ base: 0, md: 60 }}
-          p={{ base: 4, md: 8 }}
-          pt={{ base: 16, md: 8 }}
+          ml={{ base: 0, md: 0 }}
+          p={{ base: 4, md: 10 }}
+          pt={{ base: 20, md: 20 }}
           flex="1"
         >
           <Routes>
