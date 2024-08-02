@@ -6,8 +6,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
-import Skills from "./pages/Skills";
-import Experience from "./pages/Experience";
+import Skills from "./components/Skills";
+import Experience from "./components/Experience";
 import Hobbies from "./pages/Hobbies";
 import { Box, Flex } from "@chakra-ui/react";
 
@@ -18,7 +18,7 @@ const App = () => {
         <Sidebar />
         <Box
           ml={{ base: 0, md: 0 }}
-          p={{ base: 4, md: 10 }}
+          px={{ base: 4, md: 10 }}
           pt={{ base: 20, md: 20 }}
           flex="1"
         >
@@ -31,9 +31,11 @@ const App = () => {
             <Route path="/experience" element={<Experience />} />
             <Route path="/hobbies" element={<Hobbies />} />
           </Routes>
+          <Box mt={"30px"}>
+            <Footer />
+          </Box>
         </Box>
       </Flex>
-      <Footer />
     </Router>
   );
 };

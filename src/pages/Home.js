@@ -1,23 +1,82 @@
 import React from "react";
-import { Box, Heading, Text, Button, Image, Stack } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  Button,
+  Image,
+  Stack,
+  Flex,
+  keyframes,
+} from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
+import { ReactTyped as Typed } from "react-typed";
 import Hero from "../assets/profile.png";
+
+// Keyframes for 3D effect
+const rotate = keyframes`
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+`;
 
 const Home = () => {
   return (
     <Box p={4}>
       <Stack spacing={4}>
-        <Heading as="h2" size="xl" mb={4}>
+        <Heading as="h4" size="lg" mb={4}>
           Welcome to My Portfolio
         </Heading>
 
-        <Image
-          borderRadius="full"
-          boxSize="150px"
-          src={Hero}
-          alt="Your Name"
-          mb={4}
-        />
+        <Flex direction="column" align="center" py={"20"}>
+          <Box
+            borderRadius="full"
+            boxSize="350px"
+            overflow="hidden"
+            mb={4}
+            animation={`${rotate} 3s infinite linear`}
+            transform="rotateY(0deg)"
+            _hover={{
+              animationPlayState: "paused",
+            }}
+          >
+            <Image src={Hero} alt="it's me!" />
+          </Box>
+          <Heading as="h1" size="xl" mb={4}>
+            Ahmad Rizal Baehaqi
+          </Heading>
+          <Box p={4}>
+            <Box as="div" fontSize="xl" fontWeight="extrabold">
+              <Text as="span">Saya sebagai </Text>
+              <Text
+                as="span"
+                bgGradient="linear(to-l, #7928CA, #FFD987, #FF0080)"
+                bgClip="text"
+                fontSize="2xl"
+                fontWeight="extrabold"
+                style={{ fontFamily: "'JetBrains Mono', monospace" }} // Apply JetBrains Mono
+              >
+                <Typed
+                  strings={[
+                    "Web Back-End Developer",
+                    "Web Front-End Developer",
+                    "Editor",
+                    "Photographer",
+                    "Orang Biasa",
+                    "Calon Suamimu",
+                    "Calon Menantu Orang Tua mu",
+                  ]}
+                  typeSpeed={100}
+                  backSpeed={20}
+                  loop
+                />
+              </Text>
+            </Box>
+          </Box>
+        </Flex>
 
         <Text fontSize="lg" mb={2}>
           Hi, I'm Rizal Baehaqi, a passionate developer who loves creating

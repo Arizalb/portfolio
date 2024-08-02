@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
-import Music from "./Music";
-import FavoriteMovies from "./Movies";
+import Music from "../components/Music";
+import FavoriteMovies from "../components/Movies";
 
 const Hobbies = () => {
   return (

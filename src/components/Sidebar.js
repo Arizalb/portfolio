@@ -92,7 +92,7 @@ const Sidebar = () => {
           display={{ base: "inline-flex", md: "none" }}
         />
         <Heading as="h1" size="md" flex="1" textAlign="center">
-          RzlBaihqi
+          RzlBaihaqi
         </Heading>
         <Flex align="center">
           <SunIcon />

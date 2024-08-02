@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Heading, Text } from "@chakra-ui/react";
-import Skills from "./Skills";
-import Experience from "./Experience";
+import Skills from "../components/Skills";
+import Experience from "../components/Experience";
 
 const About = () => {
   return (

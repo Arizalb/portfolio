@@ -15,6 +15,10 @@ const theme = extendTheme({
       900: "#003f5e",
     },
   },
+  fonts: {
+    heading: `'Ubuntu', sans-serif`,
+    body: `'Ubuntu', sans-serif`,
+  },
 });
 
 export default theme;
