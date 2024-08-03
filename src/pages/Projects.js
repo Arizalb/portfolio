@@ -21,13 +21,14 @@ const projects = [
     title: "Project 1",
     description: "Description of project 1",
     imageUrl: "https://via.placeholder.com/300",
+    projectUrl: "#",
   },
   {
-    title: "Project 2",
-    description: "Description of project 2",
-    imageUrl: "https://via.placeholder.com/300",
+    title: "eQuran",
+    description: "A comprehensive online Quran application.",
+    imageUrl: "https://via.placeholder.com/300", // Update this with a relevant image for your project
+    projectUrl: "https://equran-bae.netlify.app/",
   },
-  // Tambahkan proyek lainnya di sini
 ];
 
 const Projects = () => {
@@ -40,7 +41,7 @@ const Projects = () => {
   };
 
   return (
-    <Box p={4}>
+    <Box p={4} minH={"100vh"}>
       <Heading as="h2" size="xl" mb={4}>
         My Projects
       </Heading>
@@ -78,9 +79,20 @@ const Projects = () => {
               mb={4}
             />
             <Text>{selectedProject?.description}</Text>
+            {selectedProject?.projectUrl && (
+              <Button
+                as="a"
+                href={selectedProject.projectUrl}
+                target="_blank"
+                colorScheme="primary"
+                mt={4}
+              >
+                Visit Project
+              </Button>
+            )}
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="primary" mr={3} onClick={onClose}>
+            <Button colorScheme="green.900" mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>

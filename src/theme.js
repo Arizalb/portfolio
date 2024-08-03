@@ -16,8 +16,8 @@ const theme = extendTheme({
     },
   },
   fonts: {
-    heading: `'Ubuntu', sans-serif`,
-    body: `'Ubuntu', sans-serif`,
+    heading: "'Ubuntu Condensed', sans-serif",
+    body: "'Ubuntu Condensed', sans-serif",
   },
 });
 

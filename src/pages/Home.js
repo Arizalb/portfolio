@@ -8,6 +8,8 @@ import {
   Stack,
   Flex,
   keyframes,
+  useColorModeValue,
+  Container,
 } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import { ReactTyped as Typed } from "react-typed";
@@ -22,8 +24,13 @@ const rotate = keyframes`
     transform: rotateY(360deg);
   }
 `;
-
 const Home = () => {
+  const bg = useColorModeValue("white.700", "blue500");
+  const color = useColorModeValue("blue.500", "yellow.500");
+  const bgGradient = useColorModeValue(
+    "linear(to-l, #7928CA, #FFD987, #FF0080)",
+    "linear(to-r, #7928CA, #FFD987, #FF0080)"
+  );
   return (
     <Box p={4}>
       <Stack spacing={4}>
@@ -34,10 +41,13 @@ const Home = () => {
         <Flex direction="column" align="center" py={"20"}>
           <Box
             borderRadius="full"
+            border={"4px"}
+            borderColor={"transparent"}
+            bgGradient={bgGradient}
             boxSize="350px"
             overflow="hidden"
             mb={4}
-            animation={`${rotate} 3s infinite linear`}
+            animation={`${rotate} 2s infinite linear`}
             transform="rotateY(0deg)"
             _hover={{
               animationPlayState: "paused",
@@ -49,11 +59,24 @@ const Home = () => {
             Ahmad Rizal Baehaqi
           </Heading>
           <Box p={4}>
-            <Box as="div" fontSize="xl" fontWeight="extrabold">
-              <Text as="span">Saya sebagai </Text>
+            <Box
+              as="div"
+              fontSize="xl"
+              fontWeight="extrabold"
+              textAlign={"center"}
+              border={"2px"}
+              borderColor={color}
+              borderRadius={"24px 0 24px 0"}
+              padding={"10px 40px"}
+              bg={bg}
+            >
+              <Text as="span" color={color} fontWeight={"light"}>
+                Saya senang sebagai{" "}
+              </Text>
+              <br />
               <Text
                 as="span"
-                bgGradient="linear(to-l, #7928CA, #FFD987, #FF0080)"
+                bgGradient={bgGradient}
                 bgClip="text"
                 fontSize="2xl"
                 fontWeight="extrabold"
@@ -77,18 +100,29 @@ const Home = () => {
             </Box>
           </Box>
         </Flex>
-
-        <Text fontSize="lg" mb={2}>
-          Hi, I'm Rizal Baehaqi, a passionate developer who loves creating
-          amazing web applications. This portfolio showcases my skills,
-          projects, and experiences.
-        </Text>
-        <Text fontSize="sm" mb={4}>
-          oh iya, portfolio ini saya buat murni karena saya gabut. bukan untuk
-          proffessional, tapi jika Anda ingin hiring saya ya bolehlah. xixixi{" "}
-          <br /> kalo mau full experience pake desktop woi, atau kalo di HP bisa
-          dicentang mode desktopnya. lu kira atur responsive rasio gampang!!!
-        </Text>
+        <Container maxW={"3xl"} p={4}>
+          <Text fontSize="lg" mb={2}>
+            Hi, I'm Rizal Baehaqi, a passionate developer who loves creating
+            amazing web applications. This portfolio showcases my skills,
+            projects, and experiences.
+          </Text>
+        </Container>
+        <Container
+          maxW="3xl"
+          p={4}
+          bg="color"
+          boxShadow="lg"
+          rounded="md"
+          borderWidth={"1px"}
+        >
+          <Text fontSize="sm" mb={4}>
+            oh iya, portfolio ini saya buat murni karena saya gabut. bukan untuk
+            professional, tapi jika Anda ingin hiring saya ya bolehlah. xixixi{" "}
+            <br /> kalo mau full experience pake desktop woi, atau kalo di HP
+            bisa dicentang mode desktopnya. lu kira atur responsive rasio
+            gampang!!!
+          </Text>
+        </Container>
 
         <Button colorScheme="primary" as={RouterLink} to="/about" mb={4}>
           Learn More About Me

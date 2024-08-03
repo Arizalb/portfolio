@@ -16,6 +16,7 @@ import {
   Switch,
   Collapse,
   Heading,
+  Tooltip,
 } from "@chakra-ui/react";
 import { FiHome, FiUser, FiBriefcase, FiMail, FiMusic } from "react-icons/fi";
 import { HamburgerIcon, SunIcon, MoonIcon } from "@chakra-ui/icons";
@@ -29,23 +30,33 @@ const SidebarContent = ({ onClose, isOpen }) => (
       { to: "/hobbies", label: "Hobbies", icon: FiMusic },
       { to: "/contact", label: "Contact", icon: FiMail },
     ].map((item) => (
-      <Link
-        as={RouterLink}
-        to={item.to}
-        onClick={onClose}
+      <Tooltip
+        label={item.label}
         key={item.label}
-        _activeLink={{ bg: "primary.800", color: "white", borderRadius: "md" }}
-        py={2}
-        px={3}
-        w="full"
+        placement="right"
+        isDisabled={isOpen}
       >
-        <Flex align="center">
-          <item.icon />
-          <Collapse in={isOpen}>
-            <Box ml={2}>{item.label}</Box>
-          </Collapse>
-        </Flex>
-      </Link>
+        <Link
+          as={RouterLink}
+          to={item.to}
+          onClick={onClose}
+          _activeLink={{
+            bg: "primary.800",
+            color: "white",
+            borderRadius: "md",
+          }}
+          py={"10px"}
+          px={"8px"}
+          w="full"
+        >
+          <Flex align="center">
+            <Box as={item.icon} boxSize={isOpen ? "5" : "7"} />
+            <Collapse in={isOpen}>
+              <Box ml={2}>{item.label}</Box>
+            </Collapse>
+          </Flex>
+        </Link>
+      </Tooltip>
     ))}
   </VStack>
 );
