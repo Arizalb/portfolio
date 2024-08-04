@@ -4,9 +4,9 @@ import {
   Heading,
   SimpleGrid,
   Text,
-  Progress,
   Flex,
   useColorMode,
+  keyframes,
 } from "@chakra-ui/react";
 import javascriptLogo from "../assets/js.svg";
 import reactLogo from "../assets/react.svg";
@@ -28,6 +28,12 @@ const skills = [
   },
   // Tambahkan skill lainnya di sini
 ];
+
+const rainbowAnimation = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
 
 const Skills = () => {
   const { colorMode } = useColorMode();
@@ -60,7 +66,20 @@ const Skills = () => {
               </Text>
               <Text>{skill.level}%</Text>
             </Flex>
-            <Progress value={skill.level} size="sm" colorScheme="primary" />
+            <Box
+              height="8px"
+              borderRadius="md"
+              overflow="hidden"
+              bg={colorMode === "dark" ? "gray.600" : "gray.200"}
+            >
+              <Box
+                height="100%"
+                width={`${skill.level}%`}
+                bg="linear-gradient(90deg, violet, indigo, blue, green, yellow, orange, red, green, blue, indigo, violet,orange, yellow )"
+                backgroundSize="200% 200%"
+                animation={`${rainbowAnimation} 2s ease infinite`}
+              ></Box>
+            </Box>
           </Box>
         ))}
       </SimpleGrid>

@@ -11,7 +11,7 @@ import {
 
 const Contact = () => {
   return (
-    <Box p={4}>
+    <Box p={4} minH={"100vh"}>
       <Heading as="h2" size="xl" mb={4}>
         Contact Me
       </Heading>
