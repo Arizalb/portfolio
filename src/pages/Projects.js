@@ -92,7 +92,7 @@ const Projects = () => {
             )}
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="green.900" mr={3} onClick={onClose}>
+            <Button colorScheme="primary" mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>

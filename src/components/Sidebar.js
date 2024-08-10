@@ -5,12 +5,6 @@ import {
   Flex,
   Link,
   VStack,
-  IconButton,
-  CloseButton,
-  useDisclosure,
-  Drawer,
-  DrawerContent,
-  DrawerOverlay,
   useColorMode,
   useColorModeValue,
   Switch,
@@ -19,10 +13,14 @@ import {
   Tooltip,
 } from "@chakra-ui/react";
 import { FiHome, FiUser, FiBriefcase, FiMail, FiMusic } from "react-icons/fi";
-import { HamburgerIcon, SunIcon, MoonIcon } from "@chakra-ui/icons";
+import { SunIcon, MoonIcon } from "@chakra-ui/icons";
 
-const SidebarContent = ({ onClose, isOpen }) => (
-  <VStack spacing={4} align="start" w="full">
+const SidebarContent = ({ isOpen }) => (
+  <VStack
+    spacing={{ base: 8, md: 4 }} // Adjust spacing based on screen size
+    align="start" // Align to the left on desktop
+    w="full"
+  >
     {[
       { to: "/", label: "Home", icon: FiHome },
       { to: "/about", label: "About", icon: FiUser },
@@ -39,19 +37,29 @@ const SidebarContent = ({ onClose, isOpen }) => (
         <Link
           as={RouterLink}
           to={item.to}
-          onClick={onClose}
           _activeLink={{
             bg: "primary.800",
             color: "white",
-            borderRadius: "md",
+            padding: "auto",
+            borderRadius: "24px 0 24px 0",
+            cursor: "pointer",
           }}
           py={"10px"}
-          px={"8px"}
+          px={{ base: "6px", md: "8px" }} // Adjust padding based on screen size
           w="full"
+          display="flex"
+          alignItems="center"
+          justifyContent={{ base: "center", md: "flex-start" }} // Centered on mobile, left-aligned on desktop
+          transform={{ base: "rotate(-90deg)", md: "none" }}
+          position="relative" // Required for indicator positioning
         >
           <Flex align="center">
-            <Box as={item.icon} boxSize={isOpen ? "5" : "7"} />
-            <Collapse in={isOpen}>
+            <Box
+              as={item.icon}
+              boxSize="5"
+              display={{ base: "none", md: "block" }} // Hide icons on mobile
+            />
+            <Collapse in={isOpen} display={{ base: "none", md: "block" }}>
               <Box ml={2}>{item.label}</Box>
             </Collapse>
           </Flex>
@@ -62,17 +70,10 @@ const SidebarContent = ({ onClose, isOpen }) => (
 );
 
 const Sidebar = () => {
-  const {
-    isOpen: isDrawerOpen,
-    onOpen: onDrawerOpen,
-    onClose: onDrawerClose,
-  } = useDisclosure();
-  const [isSidebarOpen, setSidebarOpen] = useState(true);
+  const [isSidebarOpen] = useState(true);
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue("primary.900", "gray.800");
+  const bg = useColorModeValue("primary.900", "gray.900");
   const color = useColorModeValue("white", "gray.200");
-
-  const toggleSidebar = () => setSidebarOpen(!isSidebarOpen);
 
   return (
     <>
@@ -88,21 +89,7 @@ const Sidebar = () => {
         px={4}
         zIndex="1001"
       >
-        <IconButton
-          aria-label="Toggle sidebar"
-          icon={<HamburgerIcon />}
-          size="sm"
-          onClick={toggleSidebar}
-          display={{ base: "none", md: "inline-flex" }}
-        />
-        <IconButton
-          aria-label="Open menu"
-          icon={<HamburgerIcon />}
-          size="sm"
-          onClick={onDrawerOpen}
-          display={{ base: "inline-flex", md: "none" }}
-        />
-        <Heading as="h1" size="md" flex="1" textAlign="center">
+        <Heading as="h1" size="md" flex="1" textAlign="left">
           RzlBaihaqi
         </Heading>
         <Flex align="center">
@@ -115,40 +102,30 @@ const Sidebar = () => {
           <MoonIcon />
         </Flex>
       </Box>
+
+      {/* Sidebar for All Screens */}
       <Box
-        display={{ base: "none", md: "block" }}
         pos="fixed"
         left="0"
         top="16"
-        w={isSidebarOpen ? 60 : 16}
+        w={isSidebarOpen ? { base: 16, md: 60 } : 16} // Slim sidebar on mobile
         h="full"
         bg={bg}
         color={color}
         p={4}
         transition="width 0.3s"
       >
-        <SidebarContent onClose={() => {}} isOpen={isSidebarOpen} />
+        <SidebarContent isOpen={isSidebarOpen} />
       </Box>
-      <Drawer
-        isOpen={isDrawerOpen}
-        placement="left"
-        onClose={onDrawerClose}
-        display={{ base: "block", md: "none" }}
-      >
-        <DrawerOverlay>
-          <DrawerContent bg={bg} color={color} p={4}>
-            <CloseButton onClick={onDrawerClose} alignSelf="flex-end" />
-            <SidebarContent onClose={onDrawerClose} isOpen />
-          </DrawerContent>
-        </DrawerOverlay>
-      </Drawer>
+
+      {/* Page Content Wrapper */}
       <Box
-        ml={{ base: 0, md: isSidebarOpen ? 60 : 16 }}
+        ml={isSidebarOpen ? { base: 16, md: 60 } : 16} // Adjust content margin for slim sidebar on mobile
         mt="16"
         p={4}
         transition="margin-left 0.3s"
       >
-        {/* Konten halaman Anda di sini */}
+        {/* Your page content goes here */}
       </Box>
     </>
   );

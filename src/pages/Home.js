@@ -71,7 +71,7 @@ const Home = () => {
               bg={bg}
             >
               <Text as="span" color={color} fontWeight={"light"}>
-                Saya senang sebagai{" "}
+                I try to be{" "}
               </Text>
               <br />
               <Text
@@ -88,9 +88,7 @@ const Home = () => {
                     "Web Front-End Developer",
                     "Editor",
                     "Photographer",
-                    "Orang Biasa",
                     "Calon Suamimu",
-                    "Calon Menantu Orang Tua mu",
                   ]}
                   typeSpeed={100}
                   backSpeed={20}
@@ -116,7 +114,7 @@ const Home = () => {
           borderWidth={"1px"}
         >
           <Text fontSize="sm" mb={4}>
-            oh iya, portfolio ini saya buat murni karena saya gabut. bukan untuk
+            portofolio ini saya buat murni karena saya gabut. bukan untuk
             professional, tapi jika Anda ingin hiring saya ya bolehlah. xixixi{" "}
             <br /> kalo mau full experience pake desktop woi, atau kalo di HP
             bisa dicentang mode desktopnya. lu kira atur responsive rasio
