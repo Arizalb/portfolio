@@ -32,7 +32,7 @@ const Home = () => {
     "linear(to-r, #7928CA, #FFD987, #FF0080)"
   );
   return (
-    <Box p={4}>
+    <Box>
       <Stack spacing={4}>
         <Heading as="h4" size="lg" mb={4}>
           Welcome to My Portfolio
