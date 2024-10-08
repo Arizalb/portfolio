@@ -15,18 +15,20 @@ import {
   ModalBody,
   ModalFooter,
 } from "@chakra-ui/react";
+import cbtImg from "../assets/imageCBT.png";
+import equranImg from "../assets/image.png";
 
 const projects = [
   {
-    title: "Project 1",
-    description: "Description of project 1",
-    imageUrl: "https://via.placeholder.com/300",
-    projectUrl: "#",
+    title: "CBT App",
+    description: "Apikasi untuk ujian online berbasis komputer",
+    imageUrl: cbtImg,
+    projectUrl: "https://ontest.netlify.app",
   },
   {
     title: "eQuran",
     description: "A comprehensive online Quran application.",
-    imageUrl: "https://via.placeholder.com/300", // Update this with a relevant image for your project
+    imageUrl: equranImg, // Update this with a relevant image for your project
     projectUrl: "https://equran-bae.netlify.app/",
   },
 ];
