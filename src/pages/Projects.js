@@ -6,6 +6,7 @@ import {
   Image,
   Text,
   Button,
+  Flex,
   useDisclosure,
   Modal,
   ModalOverlay,
@@ -16,20 +17,27 @@ import {
   ModalFooter,
 } from "@chakra-ui/react";
 import cbtImg from "../assets/imageCBT.png";
-import equranImg from "../assets/image.png";
+import equranImg from "../assets/imageQuran.png";
+import portImg from "../assets/image.png";
 
 const projects = [
   {
     title: "CBT App",
-    description: "Apikasi untuk ujian online berbasis komputer",
+    description: "Aplikasi untuk ujian online berbasis komputer",
     imageUrl: cbtImg,
     projectUrl: "https://ontest.netlify.app",
   },
   {
     title: "eQuran",
     description: "A comprehensive online Quran application.",
-    imageUrl: equranImg, // Update this with a relevant image for your project
+    imageUrl: equranImg,
     projectUrl: "https://equran-bae.netlify.app/",
+  },
+  {
+    title: "simple porto",
+    description: "Contoh portofolio simpel menggunakan Html CSS + Bootstrap",
+    imageUrl: portImg,
+    projectUrl: "mysimpleport.netlify.app",
   },
 ];
 
@@ -55,16 +63,30 @@ const Projects = () => {
             borderRadius="lg"
             overflow="hidden"
           >
-            <Image src={project.imageUrl} alt={project.title} />
-            <Box p={4}>
-              <Heading as="h3" size="md" mb={2}>
-                {project.title}
-              </Heading>
-              <Text mb={2}>{project.description}</Text>
-              <Button colorScheme="primary" onClick={() => openModal(project)}>
-                Learn More
-              </Button>
-            </Box>
+            <Flex direction="column" align="center" justify="space-between">
+              <Image
+                src={project.imageUrl}
+                alt={project.title}
+                boxSize="300px"
+                objectFit="cover"
+              />
+              <Box p={4} textAlign="center">
+                <Heading as="h3" size="md" mb={2}>
+                  {project.title}
+                </Heading>
+                <Text mb={2} height="70px" overflow="hidden">
+                  {project.description}
+                </Text>
+                <Flex justifyContent="center" mt="auto">
+                  <Button
+                    colorScheme="primary"
+                    onClick={() => openModal(project)}
+                  >
+                    Learn More
+                  </Button>
+                </Flex>
+              </Box>
+            </Flex>
           </Box>
         ))}
       </SimpleGrid>
@@ -75,26 +97,30 @@ const Projects = () => {
           <ModalHeader>{selectedProject?.title}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Image
-              src={selectedProject?.imageUrl}
-              alt={selectedProject?.title}
-              mb={4}
-            />
-            <Text>{selectedProject?.description}</Text>
-            {selectedProject?.projectUrl && (
-              <Button
-                as="a"
-                href={selectedProject.projectUrl}
-                target="_blank"
-                colorScheme="primary"
-                mt={4}
-              >
-                Visit Project
-              </Button>
-            )}
+            <Flex direction="column" align="center">
+              <Image
+                src={selectedProject?.imageUrl}
+                alt={selectedProject?.title}
+                boxSize="300px"
+                objectFit="cover"
+                mb={4}
+              />
+              <Text>{selectedProject?.description}</Text>
+              {selectedProject?.projectUrl && (
+                <Button
+                  as="a"
+                  href={selectedProject.projectUrl}
+                  target="_blank"
+                  colorScheme="primary"
+                  mt={4}
+                >
+                  Visit Project
+                </Button>
+              )}
+            </Flex>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="primary" mr={3} onClick={onClose}>
+            <Button colorScheme="red" mr={3} onClick={onClose}>
               Close
             </Button>
           </ModalFooter>
