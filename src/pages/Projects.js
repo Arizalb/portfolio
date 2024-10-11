@@ -37,7 +37,7 @@ const projects = [
     title: "simple porto",
     description: "Contoh portofolio simpel menggunakan Html CSS + Bootstrap",
     imageUrl: portImg,
-    projectUrl: "mysimpleport.netlify.app",
+    projectUrl: "https://mysimpleport.netlify.app",
   },
 ];
 
