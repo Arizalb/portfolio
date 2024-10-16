@@ -16,13 +16,13 @@ import expressLogo from "../assets/express.svg";
 import expressLogoDark from "../assets/expressDark.svg";
 
 const skills = [
-  { name: "JavaScript", level: 80, logo: javascriptLogo },
-  { name: "React", level: 75, logo: reactLogo },
-  { name: "Node.js", level: 70, logo: nodejsLogo },
+  { name: "JavaScript", level: 60, logo: javascriptLogo },
+  { name: "React", level: 45, logo: reactLogo },
+  { name: "Node.js", level: 60, logo: nodejsLogo },
   { name: "HTML & CSS", level: 85, logo: htmlCssLogo },
   {
     name: "Express JS",
-    level: 80,
+    level: 70,
     logoLight: expressLogo,
     logoDark: expressLogoDark,
   },

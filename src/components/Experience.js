@@ -5,14 +5,14 @@ const experiences = [
   {
     position: "Frontend Developer",
     company: "Company A",
-    duration: "Jan 2020 - Present",
+    duration: "Jan 2021 - Present",
     description:
       "Developed and maintained the frontend of various web applications.",
   },
   {
     position: "Backend Developer",
     company: "Company B",
-    duration: "Mar 2018 - Dec 2019",
+    duration: "Mar 2021 - Present",
     description: "Implemented and managed backend services and APIs.",
   },
   // Tambahkan pengalaman lainnya di sini
